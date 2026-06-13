@@ -1,0 +1,123 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+    "manifest_version": 3,
+    "name": "Vocabitan",
+    "version": "26.3.16.0",
+    "description": "Popup dictionary for language learning",
+    "author": {
+        "email": "themoeway@googlegroups.com"
+    },
+    "icons": {
+        "16": "vocabitan_ico.ico",
+        "19": "vocabitan_ico.ico",
+        "32": "vocabitan_ico.ico",
+        "38": "vocabitan_ico.ico",
+        "48": "vocabitan_ico.ico",
+        "64": "vocabitan_ico.ico",
+        "128": "vocabitan_ico.ico"
+    },
+    "action": {
+        "default_icon": {
+            "16": "vocabitan_ico.ico",
+            "19": "vocabitan_ico.ico",
+            "32": "vocabitan_ico.ico",
+            "38": "vocabitan_ico.ico",
+            "48": "vocabitan_ico.ico",
+            "64": "vocabitan_ico.ico",
+            "128": "vocabitan_ico.ico"
+        },
+        "default_title": "Vocabitan",
+        "default_popup": "action-popup.html"
+    },
+    "background": {
+        "service_worker": "sw.js",
+        "type": "module"
+    },
+    "omnibox": {
+        "keyword": "yomi"
+    },
+    "content_scripts": [
+        {
+            "run_at": "document_idle",
+            "matches": [
+                "http://*/*",
+                "https://*/*",
+                "file://*/*"
+            ],
+            "match_about_blank": true,
+            "all_frames": true,
+            "js": [
+                "js/app/content-script-wrapper.js"
+            ]
+        }
+    ],
+    "minimum_chrome_version": "102.0.0.0",
+    "options_ui": {
+        "page": "settings.html",
+        "open_in_tab": true
+    },
+    "sandbox": {
+        "pages": [
+            "template-renderer.html"
+        ]
+    },
+    "permissions": [
+        "storage",
+        "clipboardWrite",
+        "unlimitedStorage",
+        "declarativeNetRequest",
+        "scripting",
+        "offscreen",
+        "contextMenus",
+        "tabs"
+    ],
+    "optional_permissions": [
+        "clipboardRead",
+        "nativeMessaging"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "commands": {
+        "toggleTextScanning": {
+            "suggested_key": {
+                "default": "Alt+Delete"
+            },
+            "description": "Toggle text scanning on/off"
+        },
+        "openInfoPage": {
+            "description": "Open the info page"
+        },
+        "openSettingsPage": {
+            "description": "Open the settings page"
+        },
+        "openSearchPage": {
+            "suggested_key": {
+                "default": "Alt+Insert"
+            },
+            "description": "Open the search page"
+        },
+        "openPopupWindow": {
+            "description": "Open the popup window"
+        }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "popup.html",
+                "template-renderer.html",
+                "js/*",
+                "lib/resvg.wasm",
+                "images/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; img-src blob: 'self' data: http: https:; style-src 'self' 'unsafe-inline'; media-src *; connect-src *",
+        "sandbox": "sandbox allow-scripts; default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'unsafe-inline'"
+    }
+}

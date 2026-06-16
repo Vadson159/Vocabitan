@@ -30,3 +30,9 @@ Vocabitan provides seamless, in-browser dictionary lookups by simply hovering ov
 **Note:** This extension perfectly works with the [VocabCurve](https://github.com/Vadson159/VocabCurve) project!
 
 **Credits:** This project is based on the amazing [Yomitan](https://github.com/yomidevs/yomitan) project.
+
+---
+## Support
+If you find this project helpful, consider supporting its development:
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/vadson)
